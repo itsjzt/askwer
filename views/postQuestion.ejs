@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/headers', {title: title}) -%>
+</head>
+<body>
+  <%- include('partials/navbar') -%>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <form action="/postQuestion" method="POST">
+          <button type="submit" class="btn float-right btn-dark">Add Question</button>
+          <div class="clearfix"></div>
+          <div class="form-group">
+            <label class="d-block">
+              Question Title
+              <input type="text" class="form-control" placeholder="Add question title">
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="d-block">Add Some Description
+              <textarea class="form-control" rows="10" placeholder="I already read about general relativity,but It didn't helped"></textarea>
+            </label>
+          </div>
+      </form>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+</div>
+<%- include('partials/footers') -%>
+</body>
+</html>
