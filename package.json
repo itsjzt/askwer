@@ -3,8 +3,9 @@
   "private": true,
   "scripts": {
     "start": "node ./backend/app.js",
-    "format": "prettier --write backend/**/*.js",
-    "dev": "nodemon -r dotenv/config ./backend/app.js"
+    "dev": "nodemon -r dotenv/config ./backend/app.js",
+    "knex": "knex --knexfile ./backend/knexfile.js",
+    "format": "prettier --write backend/**/*.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
