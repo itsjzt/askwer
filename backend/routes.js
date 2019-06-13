@@ -2,6 +2,7 @@ const express = require('express')
 const index = require('./resolvers/index')
 const postUser = require('./resolvers/postUser')
 const getUser = require('./resolvers/getUser')
+const deleteUser = require('./resolvers/deleteUser')
 
 module.exports = [
 	{
@@ -10,13 +11,18 @@ module.exports = [
 		resolver: index,
 	},
 	{
-		path: '/user',
+		path: '/users/:id',
+		method: 'get',
+		resolver: getUser,
+	},
+	{
+		path: '/users',
 		method: 'post',
 		resolver: postUser,
 	},
 	{
-		path: '/user/:id',
-		method: 'get',
-		resolver: getUser,
+		path: '/users/:id',
+		method: 'delete',
+		resolver: deleteUser,
 	},
 ]

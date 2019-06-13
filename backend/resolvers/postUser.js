@@ -6,15 +6,10 @@ const jwt = require('jsonwebtoken')
 module.exports = async function user(req, res) {
 	try {
 		await createUserSchema.validate(req.body)
-
-		const [checkUser] = await knex('user').where('email', req.body.email)
 		// knex always returns an array of table
+		const [checkUser] = await knex('user').where('email', req.body.email)
 		if (checkUser) {
-			return res.status(409).json({
-				error: {
-					message: 'email already exists',
-				},
-			})
+			return res.sendStatus(409)
 		}
 
 		const passwordHash = await bcrypt.hash(req.body.password, 10)
@@ -28,8 +23,11 @@ module.exports = async function user(req, res) {
 			.returning('*')
 			.insert({ ...req.body })
 
+		// important
+		delete user.password
+
 		const token = jwt.sign(user, process.env.JWT_SECRET)
-		res.json({ user, token })
+		res.status(201).json({ user, token })
 	} catch (error) {
 		console.log(error)
 		res.status(500).json(error)

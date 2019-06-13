@@ -14,6 +14,6 @@ module.exports = async function getUser(req, res) {
 		return res.json(user)
 	} catch (error) {
 		console.log(error)
-		res.status(500).json(error)
+		res.sendStatus(500)
 	}
 }
