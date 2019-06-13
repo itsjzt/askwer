@@ -1,15 +1,15 @@
-const express = require("express")
-const path = require("path")
-const cookieParser = require("cookie-parser")
-const logger = require("morgan")
+const express = require('express')
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
 const bodyParser = require('body-parser')
-const routes = require("./routes")
+const routes = require('./routes')
 const app = express()
 
 /*
   this is a logger thats logs in apache style with "common"
 */
-app.use(logger("common"))
+app.use(logger('common'))
 /*
   parse the form data, this only takes URLEncoded form data
 */
@@ -30,7 +30,7 @@ app.use(cookieParser())
   and use in all resolvers
 */
 for (let route of routes) {
-  app[route.method](route.path, route.resolver)
+	app[route.method](route.path, route.resolver)
 }
 /*
   This also includes a 404 for not found route
