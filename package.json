@@ -2,9 +2,9 @@
   "name": "askwer",
   "private": true,
   "scripts": {
-    "start": "node ./backend/app.js",
-    "dev": "nodemon -r dotenv/config ./backend/app.js",
-    "knex": "knex --knexfile ./backend/knexfile.js",
+    "start": "node ./backend/start.js",
+    "dev": "nodemon -r dotenv/config ./backend/start.js",
+    "knex": "knex --knexfile ./backend/database/knexfile.js",
     "format": "prettier --write backend/**/*.js"
   },
   "dependencies": {
