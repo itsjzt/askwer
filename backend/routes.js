@@ -1,15 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const database = require("./database");
-const index = require("./controllers/index");
-const question = require("./controllers/question");
-const answer = require("./controllers/answer");
-const user = require("./controllers/user");
-const validateSignup = require("./utilities/validateSignup")
-const hashPassword = require("./utilities/hashPassword")
-const verifyUniqueEmail = require("./utilities/verifyUniqueEmail")
+const index = require("./resolvers/index");
+const createUser = require("./db_access/createUser");
+const validateSignup = require("./validators/signup")
+const hashPassword = require("./pre_transformers/hashPassword")
+const generateJWT = require("./post_transformers/generateJWT")
+const uniqueEmail = require("./db_validators/uniqueEmail")
+const user = require("./resolvers/user")
 
 router.get("/", index.home);
-router.post("/user", validateSignup, hashPassword, verifyUniqueEmail, user.create);
+router.post(
+  "/user",
+  validateSignup,
+  uniqueEmail,
+  hashPassword,
+  createUser
+)
 
 module.exports = router;
