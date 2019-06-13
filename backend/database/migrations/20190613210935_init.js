@@ -5,7 +5,6 @@ exports.up = function(knex, Promise) {
 				.unsigned()
 				.primary()
 			t.string('name').notNull()
-			t.text('description').nullable()
 			t.string('email').notNull()
 			t.string('password').notNull()
 			t.timestamps()
@@ -14,8 +13,7 @@ exports.up = function(knex, Promise) {
 			t.increments('id')
 				.unsigned()
 				.primary()
-			t.string('text').notNull()
-			t.text('decription').nullable()
+			t.text('text').notNull()
 			t.integer('author')
 				.references('id')
 				.inTable('user')
@@ -27,7 +25,7 @@ exports.up = function(knex, Promise) {
 			t.increments('id')
 				.unsigned()
 				.primary()
-			t.string('text').notNull()
+			t.text('text').notNull()
 			t.integer('question')
 				.references('id')
 				.inTable('question')
@@ -43,8 +41,12 @@ exports.up = function(knex, Promise) {
 }
 
 exports.down = function(knex, Promise) {
+	// this drop table needs some exactness
+	// you can't delete question
+	// before answer because of foreign key problems
+
 	return knex.schema
-		.dropTable('question')
 		.dropTable('answer')
+		.dropTable('question')
 		.dropTable('user')
 }
