@@ -4,6 +4,7 @@ const postUser = require('./resolvers/postUser')
 const getUser = require('./resolvers/getUser')
 const deleteUser = require('./resolvers/deleteUser')
 const postQuestion = require('./resolvers/postQuestion')
+const getQuestion = require('./resolvers/getQuestion')
 
 module.exports = [
 	{
@@ -15,6 +16,11 @@ module.exports = [
 		path: '/questions',
 		method: 'post',
 		resolver: postQuestion,
+	},
+	{
+		path: '/questions/:id',
+		method: 'get',
+		resolver: getQuestion,
 	},
 	{
 		path: '/users/:id',
