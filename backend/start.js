@@ -9,7 +9,7 @@ const app = express()
 /*
   this is a logger thats logs in apache style with "common"
 */
-app.use(logger('common'))
+app.use(logger('dev'))
 /*
   parse the form data, this only takes URLEncoded form data
 */
