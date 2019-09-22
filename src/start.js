@@ -1,8 +1,5 @@
 const express = require('express')
-const path = require('path')
-const cookieParser = require('cookie-parser')
 const logger = require('morgan')
-const bodyParser = require('body-parser')
 const routes = require('./routes')
 const app = express()
 
@@ -13,12 +10,8 @@ app.use(logger('dev'))
 /*
   parse the form data, this only takes URLEncoded form data
 */
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-/*
-  we need cookies for authorization with JWT
-*/
-app.use(cookieParser())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 /*
   Create routes from js object.
@@ -30,7 +23,7 @@ app.use(cookieParser())
   and use in all resolvers
 */
 for (let route of routes) {
-	app[route.method](route.path, route.resolver)
+  app[route.method](route.path, route.resolver)
 }
 /*
   This also includes a 404 for not found route
