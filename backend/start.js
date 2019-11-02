@@ -1,5 +1,4 @@
 const express = require('express')
-const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
@@ -10,11 +9,13 @@ const app = express()
   this is a logger thats logs in apache style with "common"
 */
 app.use(logger('dev'))
+
 /*
   parse the form data, this only takes URLEncoded form data
 */
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
 /*
   we need cookies for authorization with JWT
 */
@@ -32,10 +33,11 @@ app.use(cookieParser())
 for (let route of routes) {
 	app[route.method](route.path, route.resolver)
 }
+
 /*
   This also includes a 404 for not found route
 */
-app.use('*', (req, res) => res.status(404).end())
+app.use('*', (_req, res) => res.status(404).end())
 
 /*
   In case of production,
