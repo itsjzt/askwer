@@ -1,0 +1,3 @@
+- we need question, answer
+- no upvotes, no downvotes, no signup, login, sessions, no BS
+- where answer is an embedded type of question
